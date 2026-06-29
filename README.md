@@ -15,7 +15,7 @@ nix build .#claude-code
 ## Install (nix-darwin)
 
 ```nix
-inputs.claude-config.url = "github:razbomi/calude-config";
+inputs.claude-config.url = "github:razbomi/claude-config";
 
 nixpkgs.config.allowUnfree = true;
 nixpkgs.overlays = [ inputs.claude-config.overlays.default ];
