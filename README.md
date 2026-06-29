@@ -22,8 +22,8 @@ nixpkgs.overlays = [ inputs.claude-config.overlays.default ];
 environment.systemPackages = [ pkgs.claude-code ];
 ```
 
-The Claude binary is unfree, so allow it — broadly, or scoped to just this
-package. Pick one:
+The Claude binary is unfree. Allow it broadly, or scope it to just this package.
+Pick one:
 
 ```nix
 nixpkgs.config.allowUnfree = true;
