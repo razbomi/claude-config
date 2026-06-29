@@ -11,6 +11,12 @@
         "x86_64-darwin"
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
+      pkgsFor =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
     in
     {
       overlays.default = final: _prev: {
@@ -20,7 +26,7 @@
       packages = forAllSystems (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = pkgsFor system;
         in
         rec {
           claude-code = pkgs.callPackage ./package.nix { };
@@ -31,7 +37,7 @@
       apps = forAllSystems (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = pkgsFor system;
           update = pkgs.writeShellScript "update-claude-pin" ''
             export PATH=${nixpkgs.lib.makeBinPath [
               pkgs.curl
