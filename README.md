@@ -1,9 +1,8 @@
 # Claude Code on Nix
 
-Pins the native Claude Code binary to an exact, reproducible version and wraps it
-with `DISABLE_AUTOUPDATER=1` — the autoupdater can't write to the read-only Nix
-store. Updates land through git: versioned and roll-back-able, unlike the
-self-updating brew/npm installs.
+Claude Code self-updates in place. The Nix store is read-only and Nix should own
+the version, so this pins an exact build, disables the updater
+(`DISABLE_AUTOUPDATER=1`), and bumps through git.
 
 ## Run
 
