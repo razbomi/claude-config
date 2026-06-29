@@ -40,6 +40,23 @@ nixpkgs.config.allowUnfree = true;
 nixpkgs.config.allowUnfreePredicate = pkg: lib.getName pkg == "claude-code";
 ```
 
+## Update
+
+```sh
+nix run .#update              # latest
+nix run .#update -- stable
+nix run .#update -- X.Y.Z
+```
+
+`.github/workflows/update-claude.yml` runs daily: bump → `nix build` gate → PR + auto-merge.
+
+## Roll back
+
+```sh
+git revert <commit>           # then re-lock + rebuild in nix-darwin
+darwin-rebuild --rollback     # or roll back the whole generation, no rebuild
+```
+
 ## Outputs
 
 | Output | Description |
@@ -57,21 +74,4 @@ Build from a working copy instead of the pinned input:
 
 ```sh
 darwin-rebuild switch --flake . --override-input claude-config path:/path/to/repo
-```
-
-## Update
-
-```sh
-nix run .#update              # latest
-nix run .#update -- stable
-nix run .#update -- X.Y.Z
-```
-
-`.github/workflows/update-claude.yml` runs daily: bump → `nix build` gate → PR + auto-merge.
-
-## Roll back
-
-```sh
-git revert <commit>           # then re-lock + rebuild in nix-darwin
-darwin-rebuild --rollback     # or roll back the whole generation, no rebuild
 ```
