@@ -23,7 +23,12 @@ nixpkgs.overlays = [ inputs.claude-config.overlays.default ];
 environment.systemPackages = [ pkgs.claude-code ];
 ```
 
-The Claude binary is unfree, so `allowUnfree` is required.
+The Claude binary is unfree. `allowUnfree = true` above allows it broadly; to
+scope unfree to just this package instead:
+
+```nix
+nixpkgs.config.allowUnfreePredicate = pkg: lib.getName pkg == "claude-code";
+```
 
 ```sh
 brew uninstall --cask claude-code   # /opt/homebrew/bin otherwise shadows Nix
