@@ -18,15 +18,15 @@ nix build .#claude-code
 ```nix
 inputs.claude-config.url = "github:razbomi/claude-config";
 
-nixpkgs.config.allowUnfree = true;
 nixpkgs.overlays = [ inputs.claude-config.overlays.default ];
 environment.systemPackages = [ pkgs.claude-code ];
 ```
 
-The Claude binary is unfree. `allowUnfree = true` above allows it broadly; to
-scope unfree to just this package instead:
+The Claude binary is unfree, so allow it — broadly, or scoped to just this
+package. Pick one:
 
 ```nix
+nixpkgs.config.allowUnfree = true;
 nixpkgs.config.allowUnfreePredicate = pkg: lib.getName pkg == "claude-code";
 ```
 
