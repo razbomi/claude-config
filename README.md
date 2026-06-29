@@ -26,7 +26,10 @@ The Claude binary is unfree. Allow it broadly, or scope it to just this package.
 Pick one:
 
 ```nix
+# either allow all unfree:
 nixpkgs.config.allowUnfree = true;
+
+# or scope to just this package:
 nixpkgs.config.allowUnfreePredicate = pkg: lib.getName pkg == "claude-code";
 ```
 
