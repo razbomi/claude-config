@@ -6,11 +6,11 @@
 }:
 
 let
-  version = "2.1.296";
+  version = "2.1.299";
 
   hashes = {
-    darwin-arm64 = "c9b5341637becbd423ddffc5b254afb645682a3868cb708bbc6cc0e7bb419937";
-    darwin-x64 = "a6bf4f30be241053a923f3820ad23c5991d2f5ac2935b3a8dd64da218d9cc603";
+    darwin-arm64 = "ba5ab7b8c195fa03ab8d5bf3915c76153b576a2c40e79a5c46e265e7ed9744b3";
+    darwin-x64 = "099dcc53dabbbefabed8926dab25b0318775c175a7c87bb6ba6c54fde9f8ece2";
   };
 
   platform =
